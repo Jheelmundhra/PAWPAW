@@ -1,0 +1,178 @@
+/* ShelterPage.css */
+:root {
+    --primary: #FF7E33;
+    --primary-light: rgba(255, 126, 51, 0.1);
+    --secondary: #2D3748;
+    --light-bg: #FFF9F2;
+    --dark-text: #2D3748;
+    --light-text: #F8FAFC;
+    --transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  .shelters-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    color: #64748B;
+  }
+  
+  .shelters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .shelter-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform var(--transition), box-shadow var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .shelter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  
+  .card-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .established-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  
+  .shelter-header {
+    margin-bottom: 1rem;
+  }
+  
+  .shelter-header h2 {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .shelter-header h3 {
+    font-size: 0.95rem;
+    color: #64748B;
+    font-weight: 500;
+  }
+  
+  .contact-info {
+    margin: 1.5rem 0;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .contact-item svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.6rem;
+    margin-top: 0.2rem;
+    fill: var(--primary);
+  }
+  
+  .shelter-description {
+    color: #475569;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 0.8rem;
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .action-button svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+    transition: var(--transition);
+  }
+  
+  .action-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+  }
+  
+  .action-button:hover {
+    background: #e6712b;
+  }
+  
+  .action-button.outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+  }
+  
+  .action-button.outline:hover {
+    background: var(--primary-light);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .shelters-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+    }
+  }

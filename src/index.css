@@ -8,9 +8,9 @@
 .container{
   width:100vw;
   min-height: 100vh;
-  background: #B36A63;
+  background: #ffc400;
 }
 
 .container.dark{
-  background :#fff;
+  background :#222;
 }

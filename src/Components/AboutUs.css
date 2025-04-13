@@ -1,0 +1,135 @@
+
+.about-us-section {
+    background-color: #FFC62C; /* Bumble Yellow */
+    padding: 80px 40px;
+    text-align: center;
+  }
+  
+  .about-us-title {
+    font-size: 48px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 40px;
+    margin-bottom: 0; 
+  }
+  
+  .about-us-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .about-us-card {
+    background-color: #FFEEA9; /* Light Cream */
+    border-radius: 40px;
+    width: 400px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .about-us-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .about-us-card img {
+    width: 280px;
+    height: 250px;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-family:'Times New Roman', Times, serif;
+    color: #333;
+  }
+
+  .about-us-card h1{
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:#222;
+  }
+  
+  .about-us-card p {
+    font-size: 16px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-us-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .dark .about-us-card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-family:'Times New Roman', Times, serif;
+    color: #f8c0ab;
+  }
+
+  .dark .about-us-card h1{
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:#f8ded0;
+  }
+  
+  .dark .about-us-card p {
+    font-size: 16px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+  }
+
+  .dark .about-us-card {
+    background-color: #272624; /* Light Cream */
+    border-radius: 40px;
+    width: 400px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .dark .about-us-section {
+    background-color: 	#0D0D0D; /* Bumble Yellow */
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .dark .about-us-title {
+    font-size: 48px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    color: #f8ded0;
+    margin-bottom: 40px;
+  }
+
+  .about-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .about-dog-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    will-change: transform; /* Optimize animations */
+  }
+  
+  .about-dog-image:hover {
+    transform: rotate(15deg);
+  }
+  

@@ -1,0 +1,189 @@
+.faq-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  .faq-container h1{
+    color:#0a0a0a;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 1000;
+    font-size: 48px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .filter-section {
+    max-width:250px;
+    background-color: #fdecb3;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+  
+  .filter-header {
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .filter-header:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .filter-content {
+    padding: 15px 30px;
+  }
+  
+  .filter-options {
+    margin-bottom: 15px;
+  }
+  
+  .filter-option {
+    padding: 8px 0;
+    font-size: 15px;
+    color: #000000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-option:hover {
+    color: #f09618;
+  }
+  
+  /* .filter-option.active {
+    color: #333;
+    font-weight: 500;
+  } */
+  
+  .dash {
+    margin-right: 8px;
+    color: #999;
+  }
+  
+  .filter-option.active .dash {
+    color: #4a6fa5;
+  }
+  
+  .apply-section {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .apply-btn {
+    padding: 8px 20px;
+    background-color: #f09618;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .apply-btn:hover {
+    background-color: #000000;
+  }
+  
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .faq-item {
+    background-color: #fdecb3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+  
+  .faq-question {
+    padding: 18px 20px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+  }
+  
+  .faq-question:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .toggle-icon {
+    color: #4a6fa5;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  
+  .faq-answer {
+    padding: 0 20px 20px;
+  }
+  
+  .faq-answer p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin: 10px 0 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .faq-container {
+      padding: 15px;
+    }
+    
+    .filter-header, 
+    .filter-content {
+      padding: 12px 15px;
+    }
+    
+    .faq-question {
+      padding: 15px;
+    }
+    
+    .faq-answer {
+      padding: 0 15px 15px;
+    }
+  }
+
+  .faq-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .header-dog-image {
+    background-color: transparent;
+    width: 100px;
+    height: 180px;
+    object-fit:fill;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
