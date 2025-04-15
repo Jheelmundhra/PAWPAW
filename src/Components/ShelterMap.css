@@ -1,0 +1,25 @@
+.shelter-map-container {
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shelter-popup h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.shelter-popup p {
+  margin: 0.25rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Fix for map container */
+.leaflet-container {
+  height: 400px;
+  width: 100%;
+  border-radius: 12px;
+} 

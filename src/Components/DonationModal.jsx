@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './DonationModal.css';
 
-
 const DonationModal = ({ shelterName, onClose }) => {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [customAmount, setCustomAmount] = useState('');
@@ -72,31 +71,31 @@ const DonationModal = ({ shelterName, onClose }) => {
           <p className="shelter-name">Supporting: {shelterName}</p>
         </div>
 
-        <div className="amount-options">
-          {amountOptions.map(amount => (
-            <button
-              key={amount}
-              type="button"
-              className={`amount-option ${selectedAmount === amount ? 'selected' : ''}`}
-              onClick={() => handleAmountSelect(amount)}
-            >
-              ₹{amount.toLocaleString('en-IN')}
-            </button>
-          ))}
-        </div>
-
-        <div className="custom-amount">
-          <input
-            type="number"
-            placeholder="Enter custom amount (₹)"
-            value={customAmount}
-            onChange={handleCustomAmountChange}
-            min="100"
-            max="1000000"
-          />
-        </div>
-
         <form onSubmit={handleSubmit}>
+          <div className="amount-options">
+            {amountOptions.map(amount => (
+              <button
+                key={amount}
+                type="button"
+                className={`amount-option ${selectedAmount === amount ? 'selected' : ''}`}
+                onClick={() => handleAmountSelect(amount)}
+              >
+                ₹{amount.toLocaleString('en-IN')}
+              </button>
+            ))}
+          </div>
+
+          <div className="custom-amount">
+            <input
+              type="number"
+              placeholder="Enter custom amount (₹)"
+              value={customAmount}
+              onChange={handleCustomAmountChange}
+              min="100"
+              max="1000000"
+            />
+          </div>
+
           <div className="checkbox-group">
             <input
               type="checkbox"
@@ -160,7 +159,6 @@ const DonationModal = ({ shelterName, onClose }) => {
               required
               placeholder="ABCDE1234F"
               pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
-              title="Enter valid PAN (e.g., ABCDE1234F)"
             />
           </div>
 
@@ -175,15 +173,6 @@ const DonationModal = ({ shelterName, onClose }) => {
               required
               placeholder="Your complete address"
             />
-          </div>
-
-          <div className="tax-benefit">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#FF7E33" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12 8V12" stroke="#FF7E33" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M12 16H12.01" stroke="#FF7E33" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <p>₹500+ donations qualify for 80G tax benefits</p>
           </div>
 
           <button 

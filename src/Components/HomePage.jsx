@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
 const HomePage = () => {
   const sections = useRef([]);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
   
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -30,6 +32,14 @@ const HomePage = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleLogin = () => {
+    navigate('/signin');
+  };
+
+  const handleSignUp = () => {
+    navigate('/signup');
+  };
 
   return (
     <div className="homepage" ref={containerRef}>

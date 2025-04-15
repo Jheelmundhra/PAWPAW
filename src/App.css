@@ -1,51 +1,51 @@
 .container {
-    background: #B36A63;
-    min-height: 100vh;
-    transition: background 0.5s ease;
-  }
-  
-  .content {
-    padding: 2rem;
-    color: #fff;
-    text-align: center;
-  }
-  
-  /* Dark mode styles */
-  .container.dark {
-    background: #222;
-  }
-  
-  .dark .content {
-    color: #f0f0f0;
-  }
-  
-  /* Navbar dark mode (add to Navbar.css) */
-  .dark .navbar {
-    background: #090909 !important;
-  }
-  
-  .dark .nav-links a {
-    color: #f0f0f0 !important;
-  }
-  
-  .dark .nav-links a:hover {
-    color: #f8ded0 !important;
-  }
-  /* Keeps your existing styles intact, just adds: */
+  background: #b36a63;
+  min-height: 100vh;
+  transition: background 0.5s ease;
+}
+
+.content {
+  padding: 2rem;
+  color: #fff;
+  text-align: center;
+}
+
+/* Dark mode styles */
+.container.dark {
+  background: #222;
+}
+
+.dark .content {
+  color: #f0f0f0;
+}
+
+/* Navbar dark mode (add to Navbar.css) */
+.dark .navbar {
+  background: #090909 !important;
+}
+
+.dark .nav-links a {
+  color: #f0f0f0 !important;
+}
+
+.dark .nav-links a:hover {
+  color: #f8ded0 !important;
+}
+/* Keeps your existing styles intact, just adds: */
 .page-content {
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  .page-content h1 {
-    color: #B36A63;
-    margin-bottom: 15px;
-  }
-  
-  .dark .page-content h1 {
-    color: #f8ded0;
-  }
-  /* Home Page Styles */
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.page-content h1 {
+  color: #b36a63;
+  margin-bottom: 15px;
+}
+
+.dark .page-content h1 {
+  color: #f8ded0;
+}
+/* Home Page Styles */
 .home-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -62,7 +62,7 @@
 
 .hero-section h1 {
   font-size: 2.5rem;
-  color: #B36A63;
+  color: #b36a63;
   margin-bottom: 15px;
 }
 
@@ -74,7 +74,7 @@
 
 .cta-button {
   display: inline-block;
-  background: #B36A63;
+  background: #b36a63;
   color: white;
   padding: 12px 25px;
   border-radius: 50px;
@@ -108,7 +108,7 @@
   background: white;
   border-radius: 12px;
   padding: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .pet-image-placeholder {
@@ -120,173 +120,313 @@
 
 /* Home Page Styles */
 .home-content {
-    position: relative;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 2rem;
-  }
-  
-  /* Abstract Shapes */
-  .abstract-shapes {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0.1;
-  }
-  
-  .shape-circle {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: #B36A63;
-    top: -50px;
-    right: -50px;
-  }
-  
-  .shape-triangle {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 300px solid #F8DED0;
-    bottom: -100px;
-    left: -50px;
-    transform: rotate(15deg);
-  }
-  
-  .shape-wave {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, #B36A63, transparent 70%);
-    top: 50%;
-    right: 10%;
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem;
-  }
-  
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #B36A63;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-  }
-  
-  .hero-subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: #333;
-    margin-bottom: 2rem;
-  }
-  
-  /* Buttons */
-  .primary-btn {
-    background: #B36A63;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .secondary-btn {
-    background: transparent;
-    color: #B36A63;
-    border: 2px solid #B36A63;
-    padding: 10px 28px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  /* Stats Section */
-  .stats-section {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-  }
-  
-  .stat-card {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 1.5rem 2rem;
-    border-radius: 15px;
-    text-align: center;
-    min-width: 180px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  }
-  
-  .stat-card h3 {
-    font-size: 2rem;
-    color: #B36A63;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Dark Mode Adjustments */
-  .dark .hero-title {
-    color: #F8DED0;
-  }
-  
-  .dark .hero-subtitle {
-    color: #eee;
-  }
-  
-  .dark .stat-card {
-    background: rgba(30, 30, 30, 0.8);
-  }
-  
-  .dark .abstract-shapes {
-    opacity: 0.08;
-  }
-  
-  body {
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  h1 {
-    font-family: 'Playfair Display', serif;
-    color: #B36A63; /* Your brand color */
-  }
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* Abstract Shapes */
+.abstract-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.shape-circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: #b36a63;
+  top: -50px;
+  right: -50px;
+}
+
+.shape-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 300px solid #f8ded0;
+  bottom: -100px;
+  left: -50px;
+  transform: rotate(15deg);
+}
+
+.shape-wave {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #b36a63, transparent 70%);
+  top: 50%;
+  right: 10%;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #b36a63;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.hero-subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.primary-btn {
+  background: #b36a63;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #b36a63;
+  border: 2px solid #b36a63;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* Stats Section */
+.stats-section {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 180px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  color: #b36a63;
+  margin-bottom: 0.5rem;
+}
+
+/* Dark Mode Adjustments */
+.dark .hero-title {
+  color: #f8ded0;
+}
+
+.dark .hero-subtitle {
+  color: #eee;
+}
+
+.dark .stat-card {
+  background: rgba(30, 30, 30, 0.8);
+}
+
+.dark .abstract-shapes {
+  opacity: 0.08;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+  color: #b36a63; /* Your brand color */
+}
 
 /* Now the rest of your CSS */
 .container.dark .navbar {
   background: #1a1a1a !important;
   border-bottom: 1px solid #333;
 }
-  
-  .container.dark .nav-links a {
-    color: #f8ded0 !important;
-  }
-  
-  .container.dark .search-bar input {
-    background: #333;
-    color: #f8ded0;
-    border-color: #444;
-  }
-  
 
+.container.dark .nav-links a {
+  color: #f8ded0 !important;
+}
+
+.container.dark .search-bar input {
+  background: #333;
+  color: #f8ded0;
+  border-color: #444;
+}
+
+/* Add these global responsive styles at the end of the file */
+
+/* Global Responsive Styles */
+/* This will make elements scale and resize properly on all devices */
+* {
+  box-sizing: border-box;
+}
+
+/* Set core body defaults for better mobile experience */
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Text Sizing */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem !important;
+  }
+
+  .pet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  }
+
+  .page-content {
+    padding: 15px !important;
+  }
+
+  .home-content {
+    padding: 1rem !important;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .stats-section {
+    flex-direction: column !important;
+    margin: 2rem 0 !important;
+  }
+
+  .stat-card {
+    width: 100% !important;
+    margin-bottom: 15px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .page-content {
+    padding: 10px !important;
+    margin-top: 10px !important;
+  }
+
+  .hero-section {
+    padding: 30px 15px !important;
+  }
+
+  .shape-circle,
+  .shape-triangle,
+  .shape-wave {
+    transform: scale(0.7) !important;
+  }
+}
+
+/* Landscape Mode for small devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .home-content {
+    padding-top: 80px !important; /* Adjust for fixed navbar */
+  }
+
+  .hero-section {
+    padding: 20px 15px !important;
+  }
+
+  .hero-title {
+    font-size: 1.8rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Tablet Specific Styles */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .hero-section {
+    max-width: 90% !important;
+  }
+
+  .pet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  }
+
+  .stats-section {
+    flex-wrap: wrap !important;
+    justify-content: space-around !important;
+  }
+
+  .stat-card {
+    width: 45% !important;
+    margin-bottom: 20px !important;
+  }
+}

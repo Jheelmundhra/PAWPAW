@@ -1,0 +1,113 @@
+.addpet-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.addpet-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.addpet-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.addpet-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.addpet-input,
+.addpet-select,
+.addpet-textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.addpet-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.addpet-image-preview {
+  margin-top: 1rem;
+  max-width: 200px;
+  border-radius: 8px;
+}
+
+.addpet-submit-button {
+  width: 100%;
+  padding: 1rem;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addpet-submit-button:hover {
+  background: #357abd;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .addpet-container {
+    max-width: 100%;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .addpet-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .addpet-container {
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .addpet-form-group {
+    margin-bottom: 1rem;
+  }
+
+  .addpet-label {
+    font-size: 0.9rem;
+  }
+
+  .addpet-input,
+  .addpet-select,
+  .addpet-textarea {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .addpet-submit-button {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}
+
+/* Landscape mode optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .addpet-container {
+    margin-top: 70px;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+}

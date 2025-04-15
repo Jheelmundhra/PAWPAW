@@ -1,0 +1,227 @@
+.shelter-details-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #4a90e2;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+}
+
+.shelter-hero {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.shelter-main-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.shelter-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.shelter-badges {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.shelter-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.shelter-main-info section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.achievements-list {
+  list-style: none;
+  padding: 0;
+}
+
+.achievements-list li {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.achievements-list li:last-child {
+  border-bottom: none;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.shelter-sidebar > div {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.needs-list {
+  list-style: none;
+  padding: 0;
+}
+
+.needs-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.needs-list li:last-child {
+  border-bottom: none;
+}
+
+.support-button {
+  width: 100%;
+  padding: 1rem;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.support-button:hover {
+  background: #357abd;
+}
+
+.shelter-not-found {
+  text-align: center;
+  padding: 4rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .shelter-hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .shelter-details-page {
+    padding: 1rem;
+  }
+
+  .shelter-main-image {
+    height: 300px;
+  }
+
+  .shelter-content {
+    grid-template-columns: 1fr;
+  }
+
+  .shelter-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .shelter-main-info section {
+    padding: 1.5rem;
+  }
+
+  .shelter-badges {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .shelter-main-image {
+    height: 200px;
+  }
+
+  .shelter-hero-content {
+    padding: 1.5rem;
+  }
+
+  .shelter-hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .shelter-main-info section {
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .support-button {
+    padding: 0.8rem;
+  }
+}
+
+/* Donation Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.donation-modal {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Media query adjustment for donation modal on smaller screens */
+@media (max-width: 480px) {
+  .donation-modal {
+    padding: 1.5rem;
+    width: 95%;
+  }
+}
