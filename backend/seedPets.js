@@ -31,7 +31,7 @@ const samplePets = [
     location: "Los Angeles",
     description:
       "Loyal and protective companion, great with families and very intelligent.",
-    imageUrl: "https://images.unsplash.com/photo-1567752881298-894bb81f9378",
+    imageUrl: "https://images.pexels.com/photos/6568500/pexels-photo-6568500.jpeg?auto=compress&cs=tinysrgb&w=1200",
     status: "available",
   },
   {
@@ -50,7 +50,7 @@ const samplePets = [
     age: 2,
     location: "Seattle",
     description: "Curious and friendly beagle with a great nose for adventure!",
-    imageUrl: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2",
+    imageUrl: "https://images.pexels.com/photos/14116837/pexels-photo-14116837.jpeg?auto=compress&cs=tinysrgb&w=1200",
     status: "available",
   },
   {

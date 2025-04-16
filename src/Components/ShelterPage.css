@@ -335,19 +335,22 @@
 }
 
 .animal-info {
-  width:100px;
+  width:150px;
+  margin-left: 60px;
 }
 
 .animal-info h4 {
   font-size: 1.2rem;
   color: var(--secondary);
   margin-bottom: 0.5rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .animal-info p {
-  margin: 0.3rem 0;
-  color: #64748B;
+  margin: 0.6rem 0;
+  color: #181a1bcb;
   font-size: 0.9rem;
+  font-family:'Times New Roman', Times, serif;
 }
 
 .shelter-name {
@@ -369,6 +372,7 @@
 
 .pet-details-button:hover {
   text-decoration: underline;
+  color: #000000;
 }
 
 @media (max-width: 768px) {
@@ -610,7 +614,7 @@
 }
 
 .action-button.primary:hover {
-  background: #e6712b;
+  background: #ffbb01;
   transform: translateY(-2px);
 }
 
@@ -738,4 +742,242 @@
 
 .clear-filters-button:hover {
   background-color: #e5e7eb;
+}
+/* Rectangular Card Design */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.pet-details-card {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: cardFadeIn 0.4s ease-out;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--primary);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal:hover {
+  background: var(--primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.card-image-container {
+  position: relative;
+  min-height: 400px;
+}
+
+.pet-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.card-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.pet-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.pet-header h2 {
+  font-size: 2.8rem;
+  color: var(--secondary);
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.pet-meta {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pet-breed, .pet-age {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pet-description {
+  margin-bottom: 20px;
+  color: #080808;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.pet-details {
+  margin: 20px 0;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.detail-row svg {
+  flex-shrink: 0;
+  color: var(--primary);
+  stroke-width: 2;
+}
+
+.detail-label {
+  font-size: 0.8rem;
+  color: #777;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.detail-value {
+  font-weight: 600;
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+
+.adoption-process {
+  background: var(--light-bg);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.adoption-process h3 {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+.adoption-process ol {
+  padding-left: 20px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.primary-button, .secondary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.primary-button:hover {
+  background: #070707;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(230, 113, 43, 0.3);
+}
+
+.secondary-button {
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.secondary-button:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .pet-details-card {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+  }
+  
+  .card-image-container {
+    min-height: 250px;
+  }
+  
+  .card-content {
+    max-height: none;
+    padding: 20px;
+  }
+  
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
 }
