@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import api from '../services/api';
 import './HomePage.css';
+import dogu1 from '../assets/Dogu1.png';
+import dogu2 from '../assets/Dogu2.png';
+import dogu3 from '../assets/Dogu3.png';
+import shelter from '../assets/ChatGPT Image Apr 9, 2025 at 10_21_12 PM.png';
 
 const API_BASE_URL = 'http://localhost:5004/api';
 
@@ -57,7 +61,7 @@ const HomePage = () => {
         <div className="content-wrapper">
           <div className="image-container">
             <img 
-              src="https://drive.google.com/file/d/14ca0L7BblKg3puDPxSa1Pfzf0nel28jm/view?usp=sharing" 
+              src="dogu1" 
               alt="Happy Dog" 
               className="dog-image" 
               data-parallax
@@ -104,7 +108,7 @@ const HomePage = () => {
           </div>
           <div className="image-container">
             <img 
-              src="https://drive.google.com/file/d/1FX62caJNhH-KAiVqR9ZfF5EqoCTTckAI/view?usp=drive_link" 
+              src="dogu2" 
               alt="Another Happy Dog" 
               className="dog-image" 
               data-parallax
