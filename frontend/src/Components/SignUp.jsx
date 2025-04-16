@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from './AuthContext';
-import './Signup.css';
+import './SignUp.css';
 
 const Signup = ({ onClose }) => {
     const { signup } = useAuth();
