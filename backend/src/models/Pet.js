@@ -30,6 +30,15 @@ const petSchema = new mongoose.Schema({
         enum: ['available', 'adopted'],
         default: 'available'
     },
+    featured: {
+        type: Boolean,
+        default: false
+    },
+    addedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

@@ -542,3 +542,31 @@ text-decoration: underline;
   text-align: center;
 }
 }
+
+/* Featured Pets Section */
+.featured-pets-section,
+.featured-pets-container,
+.featured-title,
+.featured-title:after,
+.featured-pets-grid,
+.featured-pet-card,
+.featured-pet-image-container,
+.featured-pet-image,
+.featured-badge,
+.featured-pet-details,
+.featured-pet-details h3,
+.pet-breed,
+.pet-age,
+.pet-location,
+.pet-location:before,
+.view-pet-btn,
+.view-pet-btn:hover,
+.loading-spinner-container,
+.loading-spinner,
+.error-message,
+.no-pets-message,
+.add-featured-btn,
+.add-featured-btn:hover {
+  /* Remove these styles */
+  display: none !important;
+}

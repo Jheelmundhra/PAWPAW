@@ -8,7 +8,14 @@ require("dotenv").config();
 const app = express();
 
 // Enhanced CORS configuration
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+  })
+);
 
 // Handle preflight requests
 app.options("*", cors());
@@ -23,11 +30,15 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // Import routes
 const petRoutes = require("./routes/pets");
 const partnerRoutes = require("./routes/partners");
+const shelterRoutes = require("./routes/shelters");
+const donationRoutes = require("./routes/donations");
 
 // Use routes with proper ordering
 app.use("/api/auth", login); // Login routes with auth prefix
 app.use("/api/pets", petRoutes);
 app.use("/api/partners", partnerRoutes);
+app.use("/api/shelters", shelterRoutes);
+app.use("/api/donations", donationRoutes);
 
 // Test routes
 app.get("/test", (req, res) => {
@@ -77,7 +88,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5004;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log("Test URLs:");

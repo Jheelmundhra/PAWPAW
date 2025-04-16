@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ShelterPage.css';
 import DonationModal from './DonationModal';
 import { useNavigate } from 'react-router-dom';
 import PetDetailsModal from './PetDetailsModal';
+import { useAuth } from './AuthContext';
+import AddShelterModal from './AddShelterModal';
+import api from '../services/api';
 
 const ShelterPage = () => {
   const [selectedShelter, setSelectedShelter] = useState(null);
@@ -18,9 +21,11 @@ const ShelterPage = () => {
     radius: 5,
     petType: ''
   });
+  const [showAddShelterModal, setShowAddShelterModal] = useState(false);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
-  const shelters = [
+  const [shelters, setShelters] = useState([
     {
       id: 1,
       name: "PRAINIMAL FOUNDATION",
@@ -71,7 +76,7 @@ const ShelterPage = () => {
       established: "1980",
       image: "https://images.pexels.com/photos/30556343/pexels-photo-30556343/free-photo-of-heartwarming-image-of-a-rescued-dog-shaking-hand.jpeg",
     }
-  ];
+  ]);
 
   const animals = [
     { 
@@ -182,13 +187,132 @@ const ShelterPage = () => {
     return matchesShelter && matchesCity && matchesPetType;
   });
 
-  
+  const handleAddShelterClick = () => {
+    console.log('Current user:', user); // Debug log to see the user structure
+    
+    if (!user) {
+      console.log('No user found, redirecting to login');
+      navigate('/login', { state: { from: '/partner-shelters' } });
+      return;
+    }
+    
+    // Check if the user has a token or if there's one in localStorage
+    const hasToken = !!(user.token || user.accessToken || localStorage.getItem('token'));
+    
+    if (!hasToken) {
+      console.log('No token found, redirecting to login');
+      navigate('/login', { state: { from: '/partner-shelters' } });
+      return;
+    }
+    
+    setShowAddShelterModal(true);
+  };
+
+  // Update the useEffect with image path handling
+  useEffect(() => {
+    const fetchShelters = async () => {
+      try {
+        console.log("Attempting to fetch shelters from API...");
+        const fetchedShelters = await api.getShelters();
+        if (fetchedShelters && Array.isArray(fetchedShelters)) {
+          console.log("Successfully fetched shelters:", fetchedShelters);
+          
+          // Process shelters to handle image paths correctly
+          const processedShelters = fetchedShelters.map(shelter => {
+            // Handle different possible image property names
+            const imageUrl = shelter.imageUrl || shelter.image || shelter.imagePath;
+            
+            // If the image path is relative, make it absolute
+            let image = imageUrl;
+            if (imageUrl && !imageUrl.startsWith('http') && !imageUrl.startsWith('data:')) {
+              // Assuming uploads are served from /uploads directory
+              image = `http://localhost:5004/uploads/${imageUrl.replace(/^\/uploads\//, '')}`;
+            }
+            
+            return {
+              ...shelter,
+              // Use the original property name, but also provide 'image' for consistency
+              image: image,
+              imageUrl: image
+            };
+          });
+          
+          setShelters(processedShelters);
+        } else {
+          console.log("No shelters returned from API or invalid format, using defaults");
+        }
+      } catch (error) {
+        console.error("Error fetching shelters:", error);
+        // Will use the default shelters set in useState
+      }
+    };
+
+    fetchShelters();
+  }, []);
+
+  const handleShelterAdded = (newShelter) => {
+    console.log("Adding new shelter to list:", newShelter);
+    
+    // Handle image path for the new shelter
+    let processedShelter = { ...newShelter };
+    
+    // Process image URL if it exists
+    if (newShelter.imageUrl || newShelter.image || newShelter.imagePath) {
+      const imageUrl = newShelter.imageUrl || newShelter.image || newShelter.imagePath;
+      
+      // If the image path is relative, make it absolute
+      if (imageUrl && !imageUrl.startsWith('http') && !imageUrl.startsWith('data:')) {
+        const fullImageUrl = `http://localhost:5004/uploads/${imageUrl.replace(/^\/uploads\//, '')}`;
+        processedShelter.image = fullImageUrl;
+        processedShelter.imageUrl = fullImageUrl;
+      }
+    }
+    
+    // Properly update the shelters state with the processed shelter
+    setShelters(prevShelters => {
+      // Check if the new shelter is a valid object
+      if (!newShelter || typeof newShelter !== 'object') {
+        console.error("Invalid shelter object received:", newShelter);
+        return prevShelters;
+      }
+      
+      // Add the new shelter to the beginning of the array
+      return [processedShelter, ...prevShelters];
+    });
+  };
+
+  // Add this function to handle image loading
+  const handleImageLoad = (event, shelterId) => {
+    console.log(`Image for shelter ${shelterId} loaded successfully`);
+    // Remove loading class if it exists
+    if (event.target.parentElement) {
+      event.target.parentElement.classList.remove('loading');
+    }
+  };
+
+  // Add this function to handle image loading failures
+  const handleImageError = (event, shelter) => {
+    console.error(`Image failed to load for shelter:`, shelter);
+    // Add error class to show the error styling
+    if (event.target.parentElement) {
+      event.target.parentElement.classList.add('error');
+    }
+    
+    // Try to set a fallback image
+    event.target.src = 'https://images.pexels.com/photos/4588018/pexels-photo-4588018.jpeg';
+  };
 
   return (
     <div className="shelters-page">
       <div className="page-header">
         <h1>Our Partner Shelters</h1>
         <p className="subtitle">Creating safe havens for animals across India</p>
+        <button 
+          className="add-shelter-button" 
+          onClick={handleAddShelterClick}
+        >
+          Add Your Shelter
+        </button>
       </div>
 
       <div className="filters-section">
@@ -208,7 +332,7 @@ const ShelterPage = () => {
             onChange={(e) => setSelectedLocation(e.target.value)}
             className="filter-select"
           >
-            <option value="">All Locations</option>
+            <option key="all-locations" value="">All Locations</option>
             {locations.map(location => (
               <option key={location} value={location}>{location}</option>
             ))}
@@ -219,7 +343,7 @@ const ShelterPage = () => {
             onChange={(e) => setSelectedYear(e.target.value)}
             className="filter-select"
           >
-            <option value="">All Years</option>
+            <option key="all-years" value="">All Years</option>
             {years.map(year => (
               <option key={year} value={year}>Since {year}</option>
             ))}
@@ -246,7 +370,7 @@ const ShelterPage = () => {
                 onChange={handleAnimalFilterChange}
                 className="filter-select"
               >
-                <option value="">Select Shelter or City</option>
+                <option key="select-shelter" value="">Select Shelter or City</option>
                 {shelterNames.map(shelter => (
                   <option key={shelter} value={shelter}>{shelter}</option>
                 ))}
@@ -273,10 +397,10 @@ const ShelterPage = () => {
                 onChange={handleAnimalFilterChange}
                 className="filter-select"
               >
-                <option value="5">5 km</option>
-                <option value="10">10 km</option>
-                <option value="25">25 km</option>
-                <option value="50">50 km</option>
+                <option key="radius-5" value="5">5 km</option>
+                <option key="radius-10" value="10">10 km</option>
+                <option key="radius-25" value="25">25 km</option>
+                <option key="radius-50" value="50">50 km</option>
               </select>
             </div>
 
@@ -288,11 +412,11 @@ const ShelterPage = () => {
                 onChange={handleAnimalFilterChange}
                 className="filter-select"
               >
-                <option value="">All Pets</option>
-                <option value="dog">Dogs</option>
-                <option value="cat">Cats</option>
-                <option value="bird">Birds</option>
-                <option value="other">Other</option>
+                <option key="all-pets" value="">All Pets</option>
+                <option key="dogs" value="dog">Dogs</option>
+                <option key="cats" value="cat">Cats</option>
+                <option key="birds" value="bird">Birds</option>
+                <option key="other" value="other">Other</option>
               </select>
             </div>
 
@@ -331,9 +455,28 @@ const ShelterPage = () => {
         <div className="shelters-grid">
           {filteredShelters.length > 0 ? (
             filteredShelters.map(shelter => (
-              <div key={shelter.id} className="shelter-card">
-                <div className="card-image" style={{ backgroundImage: `url(${shelter.image})` }}>
-                  <div className="established-badge">Since {shelter.established}</div>
+              <div key={shelter.id || shelter._id} className="shelter-card">
+                <div 
+                  className="card-image loading" 
+                  style={{ 
+                    backgroundImage: `url(${
+                      shelter.image || 
+                      shelter.imageUrl || 
+                      'https://images.pexels.com/photos/4588018/pexels-photo-4588018.jpeg'
+                    })` 
+                  }}
+                >
+                  {/* Hidden image to test loading */}
+                  <img 
+                    src={shelter.image || shelter.imageUrl || 'https://images.pexels.com/photos/4588018/pexels-photo-4588018.jpeg'} 
+                    alt="" 
+                    style={{ display: 'none' }}
+                    onLoad={(e) => handleImageLoad(e, shelter.id || shelter._id)}
+                    onError={(e) => handleImageError(e, shelter)}
+                  />
+                  <div className="established-badge">
+                    Since {shelter.established || new Date(shelter.createdAt || Date.now()).getFullYear()}
+                  </div>
                 </div>
                 
                 <div className="card-content">
@@ -347,14 +490,14 @@ const ShelterPage = () => {
                       <svg viewBox="0 0 24 24">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                       </svg>
-                      <span>{shelter.address}</span>
+                      <span>{shelter.address || shelter.location}</span>
                     </div>
                     
                     <div className="contact-item">
                       <svg viewBox="0 0 24 24">
                         <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
                       </svg>
-                      <span>{shelter.phone}</span>
+                      <span>{shelter.contactPhone || shelter.phone}</span>
                     </div>
                   </div>
                   
@@ -372,7 +515,7 @@ const ShelterPage = () => {
                     </button>
                     <button 
                       className="action-button outline"
-                      onClick={() => navigate(`/shelter/${shelter.id}`)}
+                      onClick={() => navigate(`/shelter/${shelter.id || shelter._id}`)}
                     >
                       <svg viewBox="0 0 24 24">
                         <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
@@ -404,6 +547,14 @@ const ShelterPage = () => {
     onClose={handleClosePetModal}
   />
 )}
+
+      {showAddShelterModal && (
+        <AddShelterModal
+          isOpen={showAddShelterModal}
+          onClose={() => setShowAddShelterModal(false)}
+          onShelterAdded={handleShelterAdded}
+        />
+      )}
     </div>
   );
 };

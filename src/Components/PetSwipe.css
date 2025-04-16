@@ -17,8 +17,9 @@ body {
   margin: 0 auto;
   height: 85vh;
   overflow: hidden;
-  background: #fdecb3;
-  border-radius: 10px;
+  background: linear-gradient(145deg, #feebc3 0%, #ffd54f 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .history-button-container {
@@ -60,7 +61,7 @@ body {
 }
 
 .history-btn {
-  background: #f8f8f8;
+  background: #ffffff;
   color: #333;
   border: 1px solid #e0e0e0;
 }
@@ -95,8 +96,8 @@ body {
   background: #f09618;
   color: white;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,45 +106,68 @@ body {
 }
 
 .pet-swipe-container {
-  height: calc(90vh - 120px);
+  height: calc(90vh - 90px);
   overflow-y: auto;
   padding: 0 15px 20px;
   position: relative;
 }
 
 .pet-card {
-  background: white;
-  border-radius: 16px;
+  background: rgb(255, 255, 255);
+  border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.1s, opacity 0.1s;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  height: calc(100% - 80px);
+  height: calc(100% - 53px);
   margin-top: 15px;
   position: relative;
+  aspect-ratio: 2/3;
+  transform: translateY(0);
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .pet-image-container {
   position: relative;
-  height: 75%;
+  height: 65%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f5f5f5;
 }
 
 .pet-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  min-width: 100%;
+  min-height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.pet-card:hover .pet-image {
+  transform: scale(1.05);
 }
 
 .pet-badge {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 15px;
   border-radius: 20px;
   font-weight: bold;
   font-size: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #333;
+  transition: all 0.3s ease;
 }
 
 .swipe-indicator {
@@ -173,71 +197,79 @@ body {
 }
 
 .pet-details {
-  padding: 20px;
-  height: 35%;
+  padding: 25px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .pet-name-breed h2 {
   margin: 0;
-  font-size: 24px;
-  color: #333;
+  font-size: 28px;
+  color: #222;
+  font-weight: 700;
 }
 
 .pet-name-breed p {
-  margin: 5px 0 0;
+  margin: 8px 0 0;
   color: #666;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .pet-location {
-  margin: 10px 0;
-  color: #888;
+  margin: 15px 0;
+  color: #555;
   font-size: 14px;
   display: flex;
   align-items: center;
+  font-weight: 500;
 }
 
 .pet-bio-preview {
-  color: #555;
+  color: #666;
   margin: 10px 0 0;
   font-size: 15px;
-  line-height: 1.4;
+  line-height: 1.6;
   flex-grow: 1;
 }
 
 .swipe-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   margin-top: 20px;
   justify-content: center;
   padding-bottom: 20px;
   position: sticky;
   bottom: 0;
-  background: #f8f8f8;
-  padding-top: 15px;
+  background: linear-gradient(to top, #f8f8f8 80%, transparent);
+  padding-top: 20px;
 }
 
 .swipe-btn {
   flex: 1;
   max-width: 160px;
-  padding: 12px;
+  padding: 15px;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
 }
 
 .reject-btn {
-  background: #f5f5f5;
+  background: #ffffff;
   color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
 }
 
 .like-btn {
@@ -246,11 +278,15 @@ body {
 }
 
 .reject-btn:hover {
-  background: #ffebee;
+  background: #fff0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
 }
 
 .like-btn:hover {
-  background: #9a5953;
+  background: #ff9d00;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(240, 150, 24, 0.3);
 }
 
 .no-more-pets {
@@ -460,18 +496,27 @@ body {
   background: #388e3c;
 }
 
+/* History Panel - Enhanced Version */
+  /* Modern Swipe History Panel */
+/* 🌈 Gen-Z Swipe History Panel 🌈 */
 .history-panel {
   position: fixed;
   top: 0;
   left: 0;
-  width: 85%;
+  width: 88%;
   height: 100vh;
-  background: rgb(255, 255, 255);
+  background: #ffce1c;
   z-index: 1000;
-  transition: left 0.3s ease;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  font-family: 'Inter', -apple-system, sans-serif;
+  scrollbar-width: none;
+  
 }
+
+.history-panel::-webkit-scrollbar {
+  display: none;
+}
+
 
 .history-overlay {
   position: fixed;
@@ -479,359 +524,342 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
   z-index: 999;
 }
 
+/* 🎀 Header */
 .history-header {
-  padding: 20px;
-  border-bottom: 1px solid #eee;
+  padding: 24px 20px;
+  position: sticky;
+  top: 0;
+  background: #fbcf0c;
+  z-index: 10;
+  border-bottom: 1px solid #f0f0f0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  background: white;
 }
 
 .history-header h2 {
   margin: 0;
-  color: #333;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #111;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.history-header .action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.clear-all-btn, .close-panel {
+  background: #030303;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* Update clear-all-btn style */
+.clear-all-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  white-space: nowrap;
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(255, 71, 87, 0.2);
+}
+
+.clear-all-btn::before {
+  content: "🗑️";
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.clear-all-btn:hover {
+  background: #ff6b6b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+}
+
+.clear-all-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(255, 71, 87, 0.2);
+}
+
+/* Remove conflicting absolute position styles */
+.clear-all-btn {
+  position: static;
+  top: auto;
+  right: auto;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .clear-all-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .clear-all-btn::before {
+    font-size: 13px;
+  }
+}
+
+/* Remove this unused override since we deleted the duplicated styles */
+/* .clear-all-btn {
+  border: none;
+} */
 
 .close-panel {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top:-12px;
 }
 
+.clear-all-btn::before {
+  content: "🗑️";
+  font-size: 1rem;
+}
+
+.close-panel:hover {
+  background: #ff4757;
+  color: white;
+  transform: rotate(360deg);
+}
+
+/* ✨ Stats Cards */
 .history-stats {
   display: flex;
-  padding: 20px;
-  gap: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 18px 15px;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  background: #fefefe;
 }
 
 .stat-item {
-  flex: 1;
+  flex: 0 0 120px;
+  scroll-snap-align: start;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   text-align: center;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: #f5f5f5;
-  cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .stat-item:hover {
-  transform: scale(1.03);
-}
-
-.active-stat {
-  background: #b36a63;
-  color: white;
-}
-
-.active-stat .stat-count,
-.active-stat .stat-label {
-  color: white;
-}
-
-.liked-stat {
-  background: rgba(179, 106, 99, 0.1);
-}
-
-.passed-stat {
-  background: rgba(244, 67, 54, 0.1);
-  border-color: #f44336;
-}
-
-.passed-stat.active-stat {
-  background: rgba(244, 67, 54, 0.2);
-}
-
-.added-stat {
-  background: rgba(33, 150, 243, 0.1);
-  border-color: #2196f3;
-}
-
-.added-stat.active-stat {
-  background: rgba(33, 150, 243, 0.2);
+  transform: translateY(-5px) scale(1.02);
 }
 
 .stat-count {
-  font-size: 18px;
-  font-weight: bold;
-  display: block;
+  font-size: 1.8rem;
+  font-weight: 800;
   color: #333;
+  margin-bottom: 2px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .stat-label {
-  font-size: 12px;
-  color: #666;
-  display: block;
+  font-size: 0.75rem;
+  color: #090909;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
+/* Color Variants */
+.liked-stat { background: linear-gradient(135deg, #FF9A8B 0%, #FF6B95 100%); color: white; }
+.passed-stat { background: linear-gradient(135deg, #A18CD1 0%, #FBC2EB 100%); color: white; }
+.added-stat { background: linear-gradient(135deg, #84FAB0 0%, #8FD3F4 100%); color: #333; }
+.active-stat { box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+/* 🍭 History List */
 .history-list {
-  padding: 10px;
+  padding: 15px;
+  display: grid;
+  gap: 12px;
 }
+
 
 .history-item {
   display: flex;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
   align-items: center;
-  transition: all 0.2s;
+  padding: 16px;
+  background: rgb(251, 251, 250);
+  border-radius: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.history-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(to bottom, #FF9A8B, #FF6B95);
 }
 
 .history-item:hover {
-  background: #f9f9f9;
-}
-
-.history-item.liked {
-  background: rgba(179, 106, 99, 0.05);
-}
-
-.history-item.passed {
-  background: rgba(244, 67, 54, 0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(1, 1, 1, 0.08);
 }
 
 .history-pet-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  border-radius: 44px;
   object-fit: cover;
-  margin-right: 15px;
+  margin-right: 16px;
+  border: 3px solid rgb(255, 213, 74);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.pet-name-breed h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #333;
+.pet-info {
+  flex: 1;
 }
 
-.pet-name-breed p {
-  margin: 5px 0 0;
+.pet-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 4px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.pet-breed {
+  font-size: 0.85rem;
   color: #666;
-  font-size: 14px;
+  margin-bottom: 6px;
 }
 
-.pet-action-time {
+.pet-meta {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
   align-items: center;
 }
 
 .action-badge {
-  font-size: 12px;
-  padding: 3px 8px;
-  border-radius: 10px;
-  font-weight: bold;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.action-badge.liked {
-  background: rgba(76, 175, 80, 0.2);
-  color: #4caf50;
-}
-
-.action-badge.passed {
-  background: rgba(244, 67, 54, 0.2);
-  color: #f44336;
-}
-
-.action-badge.added {
-  background: rgba(33, 150, 243, 0.2);
-  color: #2196f3;
-}
+.action-badge.liked { background: rgba(255, 107, 149, 0.15); color: #FF6B95; }
+.action-badge.passed { background: rgba(161, 140, 209, 0.15); color: #A18CD1; }
+.action-badge.added { background: rgba(132, 250, 176, 0.15); color: #2ECC71; }
 
 .time-ago {
-  font-size: 12px;
-  color: #999;
+  font-size: 0.75rem;
+  color: #060606;
+  font-weight: 500;
 }
 
+/* 🦄 Empty State */
 .no-history-message {
-  color: #999;
-  font-size: 14px;
   text-align: center;
-  padding: 30px 15px;
-  margin: 10px;
-  background: #f9f9f9;
-  border-radius: 8px;
+  padding: 60px 20px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+.no-history-message p {
+  font-size: 1rem;
+  color: #454444;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.no-history-message::before {
+  content: '🐾';
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 15px;
+  opacity: 0.7;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .history-panel {
+    width: 92%;
   }
-  to {
-    opacity: 1;
+  
+  .history-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .stat-item {
+    flex: 0 0 100px;
+    padding: 14px;
+  }
+  
+  .history-pet-image {
+    width: 56px;
+    height: 56px;
   }
 }
 
-@keyframes bounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+/* Add this to your HTML head for Poppins font */
+/* <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet"> */
 
 @media (max-width: 480px) {
-  .app-container {
-    max-width: 100%;
-    height: calc(100vh - 60px);
-    border-radius: 0;
-  }
-
-  .pet-card {
-    height: 65vh;
-  }
-
-  .history-panel {
-    width: 90%;
-  }
-
-  .history-stats {
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-
-  .profile-modal .profile-content {
-    width: 95%;
-    max-height: 95vh;
+  .history-header {
     padding: 15px;
   }
-
-  .profile-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  
+  .history-item {
+    padding: 12px;
   }
-
-  .profile-image {
-    margin-right: 0;
-    margin-bottom: 15px;
-    width: 120px;
-    height: 120px;
-  }
-
-  .details-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .swipe-buttons {
-    padding: 10px;
-  }
-
-  .swipe-btn {
-    font-size: 14px;
-    padding: 12px 20px;
+  
+  .history-pet-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 12px;
   }
 }
 
 @media (max-width: 360px) {
-  .pet-card {
-    height: 60vh;
+  .history-header {
+    padding: 15px;
   }
-
-  .pet-image-container {
-    height: 65%;
+  
+  .pet-name-breed h3 {
+    font-size: 15px;
   }
-
-  .pet-details {
-    padding: 10px;
-  }
-
-  .pet-name-breed h2 {
-    font-size: 20px;
-  }
-
-  .pet-bio-preview {
-    font-size: 13px;
-  }
-
-  .action-btn {
+  
+  .pet-name-breed p {
     font-size: 12px;
-    padding: 8px 12px;
   }
-
-  .btn-text {
-    display: none;
-  }
-
-  .action-buttons-container {
-    justify-content: space-around;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .app-container {
-    max-width: 95%;
-    height: 90vh;
-  }
-
-  .pet-card {
-    height: 72vh;
-  }
-}
-
-@media (max-height: 500px) and (orientation: landscape) {
-  .app-container {
-    height: 98vh;
-  }
-
-  .pet-card {
-    height: 80vh;
-    display: flex;
-    flex-direction: row;
-  }
-
-  .pet-image-container {
-    width: 65%;
-    height: 100%;
-  }
-
-  .pet-details {
-    width: 35%;
-    height: 100%;
-  }
-
-  .swipe-buttons {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: auto;
-  }
-
-  .history-button-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 20;
-    background: transparent;
-    box-shadow: none;
+  
+  .action-badge {
+    font-size: 10px;
   }
 }
 
@@ -887,4 +915,15 @@ body {
 
 .retry-btn:hover {
   background-color: #e08a15;
+}
+
+.history-item {
+  /* ... existing styles ... */
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  background-color: rgba(179, 106, 99, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

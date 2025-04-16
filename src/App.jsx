@@ -17,6 +17,7 @@ import SignUp from './Components/SignUp';
 import Profile from './Components/Profile/Profile';
 import AddPet from './Components/AddPet';
 import ManagePets from './Components/ManagePets';
+import PetDetailsPage from './Components/PetDetailsPage';
 
 // Import with error handling
 let dogImage;
@@ -60,6 +61,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/add-pet" element={<AddPet />} />
               <Route path="/manage-pets" element={<ManagePets />} />
+              <Route path="/pet/:id" element={<PetDetailsPage />} />
             </Routes>
           </div>
         </div>

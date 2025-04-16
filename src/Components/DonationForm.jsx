@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import './DonationForm.css';
 
 const stripePromise = loadStripe('your_publishable_key'); // Replace with your Stripe publishable key
+const API_BASE_URL = 'http://localhost:5004/api';
 
 const DonationForm = ({ shelterId, shelterName }) => {
   const [amount, setAmount] = useState('');
@@ -19,7 +20,7 @@ const DonationForm = ({ shelterId, shelterName }) => {
       const stripe = await stripePromise;
       
       // Create payment intent
-      const response = await fetch('http://localhost:5000/api/donations/create-payment-intent', {
+      const response = await fetch(`${API_BASE_URL}/donations/create-payment-intent`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +45,7 @@ const DonationForm = ({ shelterId, shelterName }) => {
         setError(result.error.message);
       } else {
         // Create donation record
-        await fetch('http://localhost:5000/api/donations', {
+        await fetch(`${API_BASE_URL}/donations`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

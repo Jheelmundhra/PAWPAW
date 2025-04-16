@@ -7,6 +7,7 @@ import React, {
 } from "react";
 
 const AuthContext = createContext(null);
+const API_BASE_URL = 'http://localhost:5004/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -30,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     if (!token) return false;
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/me", {
+      const response = await fetch(`${API_BASE_URL}/auth/me`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -82,7 +83,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkServerConnection = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/test");
+      const response = await fetch(`${API_BASE_URL}/test`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -107,7 +108,7 @@ export const AuthProvider = ({ children }) => {
 
       console.log("Attempting signup with:", userData);
 
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -146,7 +147,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

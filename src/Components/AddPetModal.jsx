@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useAuth } from "./AuthContext";
 import "./PetSwipe.css";
 import "./AddPetModal.css";
 
 const AddPetModal = ({ onClose, onPetAdded }) => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     breed: "",
     age: "",
     location: "",
     distance: "",
-    image: "",
     bio: "",
     owner: "",
     phone: "",
@@ -18,7 +19,13 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
     neutered: false,
     energyLevel: "Medium",
     goodWith: [],
+    featured: false,
   });
+  
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+  const [uploadError, setUploadError] = useState("");
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -26,6 +33,32 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+  };
+
+  const handleImageChange = (e) => {
+    setUploadError("");
+    const file = e.target.files[0];
+    
+    if (!file) {
+      console.log("No file selected");
+      return;
+    }
+    
+    console.log("File selected:", file.name, file.type, file.size);
+    
+    // Simple validation
+    if (!file.type.startsWith('image/')) {
+      setUploadError("Please select an image file");
+      return;
+    }
+    
+    setImageFile(file);
+    
+    // Create a preview URL using an object URL instead of FileReader
+    const objectUrl = URL.createObjectURL(file);
+    setImagePreview(objectUrl);
+    
+    console.log("Image preview created:", objectUrl);
   };
 
   const handleGoodWithChange = (e) => {
@@ -37,9 +70,19 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
       return { ...prev, goodWith: newGoodWith };
     });
   };
+  
+  const handleImageUploadClick = () => {
+    // Programmatically click the file input
+    fileInputRef.current.click();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (!imageFile) {
+      setUploadError("Please upload an image of the pet");
+      return;
+    }
 
     // Generate a unique ID for the new pet for frontend use
     const newId = Math.floor(Math.random() * 100000);
@@ -51,11 +94,14 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
       age: parseInt(formData.age) || 1,
       timestamp: new Date(),
       action: "liked", // For frontend display purposes
-      // Make sure we have these fields to match backend model
-      bio: formData.bio, // This maps to description in the backend
-      image: formData.image, // This maps to imageUrl in the backend
+      image: imagePreview, // Use the image preview for display
+      imageFile: imageFile, // Pass the file for upload
+      featured: formData.featured, // Include featured status
+      userId: user ? user._id : null, // Include the user ID if available
     };
 
+    console.log("Submitting pet with image:", imageFile.name);
+    
     // Call the onPetAdded callback with the new pet
     onPetAdded(newPet);
 
@@ -133,16 +179,51 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
                   required
                 />
               </div>
-
-              <div className="form-group">
-                <label>Image URL</label>
-                <input
-                  type="url"
-                  name="image"
-                  value={formData.image}
-                  onChange={handleChange}
-                  required
-                />
+            </div>
+          </div>
+          
+          <div className="form-section">
+            <h3 className="section-title">Pet Image</h3>
+            <div className="form-group">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="file-input"
+                style={{ display: 'none' }}
+              />
+              
+              <button 
+                type="button" 
+                onClick={handleImageUploadClick}
+                className="upload-btn"
+              >
+                Select Image
+              </button>
+              
+              {imageFile && (
+                <p className="file-selected">
+                  Selected: {imageFile.name}
+                </p>
+              )}
+              
+              {uploadError && (
+                <p className="error-message">{uploadError}</p>
+              )}
+              
+              <div className="image-preview-container">
+                {imagePreview ? (
+                  <img 
+                    src={imagePreview} 
+                    alt="Pet preview" 
+                    className="image-preview" 
+                  />
+                ) : (
+                  <div className="upload-placeholder">
+                    <p>Image preview will appear here</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -184,6 +265,20 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
                   <span className="checkmark"></span>
                   Neutered
                 </label>
+                
+                {/* Show featured checkbox only for shelter users */}
+                {user && user.role === 'shelter' && (
+                  <label className="checkbox-label featured-checkbox">
+                    <input
+                      type="checkbox"
+                      name="featured"
+                      checked={formData.featured}
+                      onChange={handleChange}
+                    />
+                    <span className="checkmark"></span>
+                    Feature this pet on homepage
+                  </label>
+                )}
               </div>
 
               <div className="form-group">
@@ -199,71 +294,51 @@ const AddPetModal = ({ onClose, onPetAdded }) => {
                   <option value="Very High">Very High</option>
                 </select>
               </div>
-
-              <div className="form-group">
-                <label>Good With</label>
-                <div className="good-with-options">
-                  {["Kids", "Other Dogs", "Cats"].map((option) => (
-                    <label key={option} className="good-with-label">
-                      <input
-                        type="checkbox"
-                        value={option}
-                        checked={formData.goodWith.includes(option)}
-                        onChange={handleGoodWithChange}
-                      />
-                      <span className="good-with-checkmark"></span>
-                      {option}
-                    </label>
-                  ))}
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div className="form-section">
-            <h3 className="section-title">Contact Information</h3>
-            <div className="form-grid">
-              <div className="form-group">
-                <label>Your Name</label>
-                <input
-                  type="text"
-                  name="owner"
-                  value={formData.owner}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Phone Number</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+            <div className="form-group">
+              <label>Good With</label>
+              <div className="checkbox-group good-with">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    value="Kids"
+                    checked={formData.goodWith.includes("Kids")}
+                    onChange={handleGoodWithChange}
+                  />
+                  <span className="checkmark"></span>
+                  Kids
+                </label>
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    value="Other Dogs"
+                    checked={formData.goodWith.includes("Other Dogs")}
+                    onChange={handleGoodWithChange}
+                  />
+                  <span className="checkmark"></span>
+                  Other Dogs
+                </label>
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    value="Cats"
+                    checked={formData.goodWith.includes("Cats")}
+                    onChange={handleGoodWithChange}
+                  />
+                  <span className="checkmark"></span>
+                  Cats
+                </label>
               </div>
             </div>
           </div>
 
           <div className="form-actions">
-            <button type="button" className="cancel-btn" onClick={onClose}>
-              Cancel
-            </button>
             <button type="submit" className="submit-btn">
               Add Pet
+            </button>
+            <button type="button" className="cancel-btn" onClick={onClose}>
+              Cancel
             </button>
           </div>
         </form>

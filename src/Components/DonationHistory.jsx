@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './DonationHistory.css';
 
+const API_BASE_URL = 'http://localhost:5004/api';
+
 const DonationHistory = () => {
   const [donations, setDonations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ const DonationHistory = () => {
   useEffect(() => {
     const fetchDonations = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/donations/history', {
+        const response = await fetch(`${API_BASE_URL}/donations/history`, {
           headers: {
             'x-auth-token': localStorage.getItem('token')
           }

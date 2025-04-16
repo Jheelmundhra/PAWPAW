@@ -41,6 +41,8 @@ const fallbackPetsData = [
   },
 ];
 
+const API_BASE_URL = 'http://localhost:5004/api';
+
 const PetSwipe = () => {
   const { token } = useAuth();
   const [petsData, setPetsData] = useState([]);
@@ -180,51 +182,126 @@ const PetSwipe = () => {
 
   const handlePetAdded = async (newPet) => {
     try {
-      // Make API request to save the pet to MongoDB using the JSON endpoint
-      const response = await fetch("http://localhost:5000/api/pets/add-json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token ? `Bearer ${token}` : "",
-        },
-        body: JSON.stringify({
-          name: newPet.name,
-          breed: newPet.breed,
-          age: newPet.age,
-          location: newPet.location,
-          description: newPet.bio,
-          imageUrl: newPet.image,
-        }),
-      });
+      // Check if we're uploading a file or just using a URL
+      if (newPet.imageFile) {
+        console.log("Processing file upload:", newPet.imageFile);
+        console.log("Image preview data:", newPet.image ? "Preview data exists" : "No preview data");
+        console.log("Featured status:", newPet.featured);
+        
+        // Create FormData for file upload
+        const formData = new FormData();
+        formData.append("name", newPet.name);
+        formData.append("breed", newPet.breed);
+        formData.append("age", newPet.age);
+        formData.append("location", newPet.location);
+        formData.append("description", newPet.bio);
+        formData.append("image", newPet.imageFile);
+        formData.append("featured", newPet.featured);
+        
+        // Add user ID if available
+        if (newPet.userId) {
+          formData.append("userId", newPet.userId);
+        }
 
-      if (!response.ok) {
-        throw new Error("Failed to save pet to database");
+        console.log("FormData created, sending to backend...");
+
+        // Use the file upload endpoint
+        const response = await fetch(`${API_BASE_URL}/pets/add`, {
+          method: "POST",
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to save pet to database");
+        }
+
+        const savedPet = await response.json();
+        console.log("Pet saved to database:", savedPet);
+
+        // Revoke the object URL to avoid memory leaks
+        if (newPet.image && newPet.image.startsWith('blob:')) {
+          URL.revokeObjectURL(newPet.image);
+        }
+
+        // Fetch the updated pet list to refresh the data
+        fetchPets();
+
+        // Add to swiped pets history
+        const updatedSwipedPets = [
+          {
+            ...newPet,
+            id: savedPet.pet._id,
+            // Use the returned image URL from the server
+            image: savedPet.pet.imageUrl,
+            featured: savedPet.pet.featured,
+            action: "added",
+            timestamp: new Date().toISOString(),
+          },
+          ...swipedPets,
+        ];
+
+        setSwipedPets(updatedSwipedPets);
+        // localStorage.setItem is now handled by the useEffect
+
+        // Show a success message
+        alert("Pet added successfully and saved to database!");
+      } else {
+        // Fallback to JSON endpoint if no file is provided
+        const response = await fetch(`${API_BASE_URL}/pets/add-json`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+          body: JSON.stringify({
+            name: newPet.name,
+            breed: newPet.breed,
+            age: newPet.age,
+            location: newPet.location,
+            description: newPet.bio,
+            imageUrl: newPet.image,
+            featured: newPet.featured,
+            userId: newPet.userId
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to save pet to database");
+        }
+
+        const savedPet = await response.json();
+        console.log("Pet saved to database:", savedPet);
+
+        // Fetch the updated pet list to refresh the data
+        fetchPets();
+
+        // Add to swiped pets history
+        const updatedSwipedPets = [
+          {
+            ...newPet,
+            id: savedPet.pet._id,
+            featured: savedPet.pet.featured,
+            action: "added",
+            timestamp: new Date().toISOString(),
+          },
+          ...swipedPets,
+        ];
+
+        setSwipedPets(updatedSwipedPets);
+        // Show a success message
+        alert("Pet added successfully and saved to database!");
       }
-
-      const savedPet = await response.json();
-      console.log("Pet saved to database:", savedPet);
-
-      // Fetch the updated pet list to refresh the data
-      fetchPets();
-
-      // Add to swiped pets history
-      const updatedSwipedPets = [
-        {
-          ...newPet,
-          id: savedPet.pet._id,
-          action: "added",
-          timestamp: new Date().toISOString(), // Use ISO string for better JSON serialization
-        },
-        ...swipedPets,
-      ];
-
-      setSwipedPets(updatedSwipedPets);
-      // localStorage.setItem is now handled by the useEffect
-
-      // Show a success message
-      alert("Pet added successfully and saved to database!");
     } catch (error) {
       console.error("Error saving pet to database:", error);
+      
+      // Revoke the object URL to avoid memory leaks
+      if (newPet.image && newPet.image.startsWith('blob:')) {
+        URL.revokeObjectURL(newPet.image);
+      }
+      
       alert("Failed to save pet to database. Please try again.");
     }
 
@@ -233,9 +310,11 @@ const PetSwipe = () => {
 
   // Function to fetch pets from API
   const fetchPets = async () => {
+    setLoading(true);
+    setError(null);
+
     try {
-      setLoading(true);
-      const response = await fetch("http://localhost:5000/api/pets", {
+      const response = await fetch(`${API_BASE_URL}/pets`, {
         headers: {
           Authorization: token ? `Bearer ${token}` : "",
         },
@@ -269,7 +348,6 @@ const PetSwipe = () => {
       }));
 
       setPetsData(formattedPets.length > 0 ? formattedPets : fallbackPetsData);
-      setError(null);
 
       // Reset current index to show the newest pet
       setCurrentIndex(0);
@@ -428,9 +506,18 @@ const PetSwipe = () => {
             <div className="history-panel">
               <div className="history-header">
                 <h2>Swipe History</h2>
-                <button className="close-panel" onClick={toggleHistoryPanel}>
-                  ×
-                </button>
+                <div className="action-buttons">
+                  <button 
+                    className="clear-all-btn" 
+                    onClick={resetSwipes}
+                    title="Clear all swipe history"
+                  >
+                    Clear All
+                  </button>
+                  <button className="close-panel" onClick={toggleHistoryPanel}>
+                    ×
+                  </button>
+                </div>
               </div>
 
               <div className="history-stats">

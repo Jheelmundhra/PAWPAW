@@ -1,11 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
+import api from '../services/api';
 import './HomePage.css';
+
+const API_BASE_URL = 'http://localhost:5004/api';
 
 const HomePage = () => {
   const sections = useRef([]);
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
   
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
