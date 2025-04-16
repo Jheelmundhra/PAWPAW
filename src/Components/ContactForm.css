@@ -307,3 +307,18 @@
     margin-bottom: 0.8rem;
   }
 }
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-left: 4px solid #c62828;
+}
+
+.submit-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

@@ -1,36 +1,48 @@
-import React, { useState } from 'react';
-import './ContactForm.css';
+import React, { useState } from "react";
+import "./ContactForm.css";
+import { submitPartnerApplication } from "../services/partnerService";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate submission
-    setTimeout(() => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await submitPartnerApplication(formData);
       setIsSubmitted(true);
       setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
-      setTimeout(() => setIsSubmitted(false), 3000);
-    }, 500);
+      // Reset form after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      setError("Failed to submit form. Please try again later.");
+      console.error("Error submitting form:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -40,7 +52,9 @@ const ContactForm = () => {
         <div className="form-visual">
           <div className="visual-overlay"></div>
           <h2 className="visual-title">Partner With Us</h2>
-          <p className="visual-text">Join our network of shelters making a difference</p>
+          <p className="visual-text">
+            Join our network of shelters making a difference
+          </p>
         </div>
 
         {/* Right Side - Form */}
@@ -49,12 +63,12 @@ const ContactForm = () => {
             <div className="success-state">
               <div className="success-icon">
                 <svg viewBox="0 0 24 24">
-                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                 </svg>
               </div>
               <h3>Submission Successful!</h3>
               <p>We'll get back to you within 24 hours</p>
-              <button 
+              <button
                 className="back-button"
                 onClick={() => setIsSubmitted(false)}
               >
@@ -64,6 +78,7 @@ const ContactForm = () => {
           ) : (
             <>
               <h2 className="form-title">Become a Partner Shelter</h2>
+              {error && <div className="error-message">{error}</div>}
               <form onSubmit={handleSubmit}>
                 <div className="input-group">
                   <input
@@ -74,6 +89,7 @@ const ContactForm = () => {
                     required
                     className="form-input"
                     placeholder=" "
+                    disabled={isLoading}
                   />
                   <label>Your Name *</label>
                 </div>
@@ -87,6 +103,7 @@ const ContactForm = () => {
                     required
                     className="form-input"
                     placeholder=" "
+                    disabled={isLoading}
                   />
                   <label>Your Email *</label>
                 </div>
@@ -100,6 +117,7 @@ const ContactForm = () => {
                     required
                     className="form-input"
                     placeholder=" "
+                    disabled={isLoading}
                   />
                   <label>Subject *</label>
                 </div>
@@ -112,12 +130,17 @@ const ContactForm = () => {
                     required
                     className="form-textarea"
                     placeholder=" "
+                    disabled={isLoading}
                   ></textarea>
                   <label>Message *</label>
                 </div>
 
-                <button type="submit" className="submit-button">
-                  Submit Application
+                <button
+                  type="submit"
+                  className="submit-button"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Submitting..." : "Submit Application"}
                 </button>
               </form>
             </>
@@ -130,9 +153,12 @@ const ContactForm = () => {
         <div className="info-block">
           <h3>Address</h3>
           <p>
-            MARS International India Pvt. Ltd.,<br />
-            Survey No. 56/64, Gauaram Village,<br />
-            Behind Janatha Hotel, Wargal Monmdal,<br />
+            MARS International India Pvt. Ltd.,
+            <br />
+            Survey No. 56/64, Gauaram Village,
+            <br />
+            Behind Janatha Hotel, Wargal Monmdal,
+            <br />
             Medak District, Medak, Telangana, 502279
           </p>
         </div>

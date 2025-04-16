@@ -22,10 +22,12 @@ app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Import routes
 const petRoutes = require("./routes/pets");
+const partnerRoutes = require("./routes/partners");
 
 // Use routes with proper ordering
 app.use("/api/auth", login); // Login routes with auth prefix
 app.use("/api/pets", petRoutes);
+app.use("/api/partners", partnerRoutes);
 
 // Test routes
 app.get("/test", (req, res) => {
