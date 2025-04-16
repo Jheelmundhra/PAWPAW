@@ -9,7 +9,7 @@ import toggle_light from "../assets/night copy.png";
 import toggle_dark from "../assets/day copy.png";
 import { useAuth } from "./AuthContext";
 import Login from "./Login";
-import Signup from "./Signup";
+import SignUp from "./SignUp";
 
 const Navbar = ({ theme, setTheme }) => {
   const [showLogin, setShowLogin] = useState(false);
