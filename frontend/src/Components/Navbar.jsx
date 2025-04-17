@@ -157,7 +157,7 @@ const Navbar = ({ theme, setTheme }) => {
       {/* Signup Modal */}
       {showSignup && (
         <div className="auth-modal">
-          <Signup onClose={() => setShowSignup(false)} />
+          <SignUp onClose={() => setShowSignup(false)} />
         </div>
       )}
     </div>

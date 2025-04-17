@@ -1,10 +1,10 @@
 :root {
-  --primary: #FF7E33;
+  --primary: #ff7e33;
   --primary-light: rgba(255, 126, 51, 0.1);
-  --secondary: #2D3748;
-  --light-bg: #FFF9F2;
-  --dark-text: #2D3748;
-  --light-text: #F8FAFC;
+  --secondary: #2d3748;
+  --light-bg: #fff9f2;
+  --dark-text: #2d3748;
+  --light-text: #f8fafc;
   --transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -12,7 +12,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .page-header {
@@ -28,7 +28,7 @@
 
 .subtitle {
   font-size: 1.1rem;
-  color: #64748B;
+  color: #64748b;
 }
 
 .shelters-grid {
@@ -41,7 +41,7 @@
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform var(--transition), box-shadow var(--transition);
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@
 
 .shelter-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .card-image {
@@ -69,7 +69,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   animation: loadingShimmer 1.5s infinite;
   transform: translateX(-100%);
   display: none;
@@ -137,7 +142,7 @@
 
 .shelter-header h3 {
   font-size: 0.95rem;
-  color: #64748B;
+  color: #64748b;
   font-weight: 500;
 }
 
@@ -277,7 +282,7 @@
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   margin-bottom: 2rem;
 }
 
@@ -319,13 +324,13 @@
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .animal-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .animal-image {
@@ -335,7 +340,7 @@
 }
 
 .animal-info {
-  width:150px;
+  width: 150px;
   margin-left: 60px;
 }
 
@@ -343,14 +348,15 @@
   font-size: 1.2rem;
   color: var(--secondary);
   margin-bottom: 0.5rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .animal-info p {
   margin: 0.6rem 0;
   color: #181a1bcb;
   font-size: 0.9rem;
-  font-family:'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .shelter-name {
@@ -379,7 +385,7 @@
   .shelters-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .page-header h1 {
     font-size: 2rem;
   }
@@ -416,36 +422,39 @@
   backdrop-filter: blur(4px);
 }
 
-.pet-details-modal {
-  background: rgb(253, 207, 22);
+.pet-details-card {
+  background: white;
   border-radius: 16px;
-  width: 35%;
+  width: 90%;
   max-width: 800px;
   max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  animation: modalFadeIn 0.3s ease-out;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: cardFadeIn 0.3s ease-out;
+  position: relative;
 }
 
-@keyframes modalFadeIn {
+@keyframes cardFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .close-modal {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: var(--primary-light);
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   font-size: 1.2rem;
   cursor: pointer;
@@ -455,111 +464,99 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .close-modal:hover {
   background: var(--primary);
   color: white;
+  transform: rotate(90deg);
 }
 
-.modal-content {
+.card-image-container {
+  position: relative;
+  min-height: 300px;
+}
+
+.pet-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.card-content {
+  padding: 30px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 400px;
 }
 
-.modal-header {
-  padding: 2rem 2rem 1rem;
+.pet-header {
+  margin-bottom: 20px;
   border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
 }
 
-.modal-header h2 {
-  font-size: 2rem;
+.pet-header h2 {
+  font-size: 2.8rem;
   color: var(--secondary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.pet-basic-info {
+.pet-meta {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  gap: 10px;
+  margin-top: 8px;
 }
 
-.pet-age, .pet-breed {
+.pet-breed,
+.pet-age {
   background: var(--primary-light);
   color: var(--primary);
-  padding: 0.3rem 0.8rem;
+  padding: 4px 12px;
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
-}
-
-.pet-shelter {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #64748B;
-  font-size: 0.95rem;
-}
-
-.pet-shelter svg {
-  stroke-width: 2;
-}
-
-.modal-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-.modal-image {
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pet-description {
-  color: var(--dark-text);
-}
-
-.pet-description h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: var(--secondary);
-  align-items: center;
-}
-
-.pet-description p {
+  margin-bottom: 20px;
+  color: #080808;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
-  align-items: center;
+  font-size: 0.95rem;
 }
 
-.pet-details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin: 2rem 0;
+.pet-details {
+  margin: 20px 0;
 }
 
-.detail-item {
+.detail-row {
   display: flex;
-  gap: 0.8rem;
   align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-.detail-item svg {
+.detail-row svg {
   flex-shrink: 0;
-  stroke-width: 2;
   color: var(--primary);
 }
 
 .detail-label {
   display: block;
   font-size: 0.8rem;
-  color: #64748B;
+  color: #64748b;
   margin-bottom: 0.2rem;
 }
 
@@ -568,86 +565,79 @@
   color: var(--secondary);
 }
 
-.adoption-info {
-  background: var(--light-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-top: 1.5rem;
-  width: 100%;
-  align-items: center;
+.adoption-process {
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
-.adoption-info h4 {
-  margin-bottom: 1rem;
+.adoption-process h3 {
+  font-size: 1.2rem;
   color: var(--secondary);
+  margin-bottom: 12px;
 }
 
-.adoption-info ol {
-  padding-left: 1.2rem;
+.adoption-process ol {
+  padding-left: 20px;
+  margin: 0;
   line-height: 1.8;
 }
 
-.modal-actions {
+.action-buttons {
   display: flex;
-  gap: 1rem;
-  padding: 1.5rem 2rem;
-  border-top: 1px solid #f0f0f0;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.action-button {
+.primary-button,
+.secondary-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
+  gap: 6px;
+  padding: 10px 16px;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  flex: 1;
-  justify-content: center;
-}
-
-.action-button.primary {
-  background: var(--primary);
-  color: white;
+  transition: all 0.2s;
   border: none;
 }
 
-.action-button.primary:hover {
-  background: #ffbb01;
+.primary-button {
+  background: var(--primary);
+  color: white;
+}
+
+.primary-button:hover {
+  background: darken(var(--primary), 10%);
   transform: translateY(-2px);
 }
 
-.action-button.secondary {
-  background: white;
-  color: var(--primary);
-  border: 2px solid var(--primary);
+.secondary-button {
+  background: #f3f4f6;
+  color: #475569;
 }
 
-.action-button.secondary:hover {
-  background: var(--primary-light);
-  transform: translateY(-2px);
-}
-
-.action-button svg {
-  stroke-width: 2.5;
+.secondary-button:hover {
+  background: #e5e7eb;
 }
 
 @media (max-width: 768px) {
-  .modal-body {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
+  .pet-details-card {
+    width: 95%;
+    flex-direction: column;
   }
-  
-  .modal-image {
-    height: 250px;
+
+  .card-image-container {
+    height: 200px;
   }
-  
-  .pet-details-grid {
-    grid-template-columns: 1fr;
+
+  .card-content {
+    max-height: 60vh;
   }
-  
-  .modal-actions {
+
+  .action-buttons {
     flex-direction: column;
   }
 }
@@ -695,8 +685,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .error-message {
@@ -743,115 +737,19 @@
 .clear-filters-button:hover {
   background-color: #e5e7eb;
 }
-/* Rectangular Card Design */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 20px;
+
+/* Update styles for the shelter details modal */
+.shelter-details-card {
+  max-width: 900px;
+  padding-top: 0;
 }
 
-.pet-details-card {
-  background: white;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 700px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  animation: cardFadeIn 0.4s ease-out;
+.shelter-details-card .card-image-container {
+  min-height: 300px;
+  margin-top: 0;
 }
 
-@keyframes cardFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: var(--primary);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.close-modal:hover {
-  background: var(--primary);
-  color: white;
-  transform: rotate(90deg);
-}
-
-.card-image-container {
-  position: relative;
-  min-height: 400px;
-}
-
-.pet-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.3s ease;
-}
-
-.card-content {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  max-height: 400px;
-}
-
-.pet-header {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 15px;
-}
-
-.pet-header h2 {
-  font-size: 2.8rem;
-  color: var(--secondary);
-  margin-bottom: 5px;
-  font-weight: 700;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.pet-meta {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.pet-breed, .pet-age {
+.established-year {
   background: var(--primary-light);
   color: var(--primary);
   padding: 4px 12px;
@@ -860,124 +758,81 @@
   font-weight: 600;
   display: inline-flex;
   align-items: center;
+  margin-left: 10px;
 }
 
-.pet-description {
+.shelter-details-card .pet-header {
+  margin-top: 15px;
+}
+
+.shelter-details-card .pet-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.shelter-description {
   margin-bottom: 20px;
-  color: #080808;
   line-height: 1.6;
+  color: #333;
   font-size: 0.95rem;
 }
 
-.pet-details {
+.shelter-details-section {
+  margin-bottom: 25px;
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.shelter-details-section h3 {
+  color: var(--secondary);
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.achievements-list,
+.needs-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.achievements-list li,
+.needs-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.achievements-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.needs-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.5em;
+  line-height: 0.7;
+}
+
+.contact-section {
   margin: 20px 0;
 }
 
-.detail-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.detail-row svg {
-  flex-shrink: 0;
-  color: var(--primary);
-  stroke-width: 2;
-}
-
-.detail-label {
-  font-size: 0.8rem;
-  color: #777;
-  display: block;
-  margin-bottom: 2px;
-}
-
-.detail-value {
-  font-weight: 600;
+.contact-section h3 {
   color: var(--secondary);
-  font-size: 0.95rem;
-}
-
-.adoption-process {
-  background: var(--light-bg);
-  padding: 15px;
-  border-radius: 8px;
-  margin: 15px 0;
-}
-
-.adoption-process h3 {
-  font-size: 1.1rem;
-  color: var(--secondary);
-  margin-bottom: 10px;
-}
-
-.adoption-process ol {
-  padding-left: 20px;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: #555;
-}
-
-.action-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.primary-button, .secondary-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  border-radius: 8px;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
   font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.primary-button {
-  background: var(--primary);
-  color: white;
-  border: none;
-}
-
-.primary-button:hover {
-  background: #070707;
-  transform: translateY(-2px);
-  box-shadow: 0 3px 10px rgba(230, 113, 43, 0.3);
-}
-
-.secondary-button {
-  background: white;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-}
-
-.secondary-button:hover {
-  background: var(--primary-light);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .pet-details-card {
-    grid-template-columns: 1fr;
-    max-height: 90vh;
-  }
-  
-  .card-image-container {
-    min-height: 250px;
-  }
-  
-  .card-content {
-    max-height: none;
-    padding: 20px;
-  }
-  
-  .action-buttons {
-    grid-template-columns: 1fr;
-  }
 }

@@ -3,10 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import api from '../services/api';
 import './HomePage.css';
-import dogu1 from '../assets/Dogu1.png';
-import dogu2 from '../assets/Dogu2.png';
-import dogu3 from '../assets/Dogu3.png';
-import shelter from '../assets/ChatGPT Image Apr 9, 2025 at 10_21_12 PM.png';
 
 const API_BASE_URL = 'http://localhost:5004/api';
 
@@ -61,7 +57,7 @@ const HomePage = () => {
         <div className="content-wrapper">
           <div className="image-container">
             <img 
-              src="dogu1" 
+              src="https://res.cloudinary.com/da1dzhidd/image/upload/v1744882898/Jheel/Dogu2_dhx6ca.png" 
               alt="Happy Dog" 
               className="dog-image" 
               data-parallax
@@ -108,7 +104,7 @@ const HomePage = () => {
           </div>
           <div className="image-container">
             <img 
-              src="dogu2" 
+              src="src/assets/Dogu1.png" 
               alt="Another Happy Dog" 
               className="dog-image" 
               data-parallax
@@ -127,7 +123,7 @@ const HomePage = () => {
         <div className="content-wrapper">
           <div className="image-container">
             <img 
-              src="https://drive.google.com/file/d/1dRI6jsIlJPcHrbYIy_mG9Gw8TO99XWmr/view?usp=drive_link" 
+              src="src/assets/Dogu3.png" 
               alt="Rescued Dog" 
               className="dog-image" 
               data-parallax
@@ -181,7 +177,7 @@ const HomePage = () => {
           </div>
           <div className="image-container">
             <img 
-              src="https://drive.google.com/file/d/1G1nw26jkXX_XEzg7ojEtqCo2yh2DcjU0/view?usp=drive_link"
+              src="src/assets/ChatGPT Image Apr 9, 2025 at 10_21_12 PM.png"
               alt="Shelter Volunteers" 
               className="dog-image" 
               data-parallax
