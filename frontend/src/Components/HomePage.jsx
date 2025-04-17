@@ -104,7 +104,7 @@ const HomePage = () => {
           </div>
           <div className="image-container">
             <img 
-              src="src/assets/Dogu1.png" 
+              src="https://res.cloudinary.com/da1dzhidd/image/upload/v1744882981/Jheel/Dogu1_zttnvz.png" 
               alt="Another Happy Dog" 
               className="dog-image" 
               data-parallax
@@ -123,7 +123,7 @@ const HomePage = () => {
         <div className="content-wrapper">
           <div className="image-container">
             <img 
-              src="src/assets/Dogu3.png" 
+              src="https://res.cloudinary.com/da1dzhidd/image/upload/v1744882991/Jheel/Dogu3_rn4lpl.png" 
               alt="Rescued Dog" 
               className="dog-image" 
               data-parallax
@@ -177,7 +177,7 @@ const HomePage = () => {
           </div>
           <div className="image-container">
             <img 
-              src="src/assets/ChatGPT Image Apr 9, 2025 at 10_21_12 PM.png"
+              src="https://res.cloudinary.com/da1dzhidd/image/upload/v1744882999/Jheel/ChatGPT_Image_Apr_9_2025_at_10_21_12_PM_fpn5k4.png"
               alt="Shelter Volunteers" 
               className="dog-image" 
               data-parallax
