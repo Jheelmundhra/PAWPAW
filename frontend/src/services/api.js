@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5004/api';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Helper function to handle authentication headers
 const getAuthHeaders = (token, includeContentType = true) => {

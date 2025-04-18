@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL ="http://localhost:5004/api";
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Submit partner application
 export const submitPartnerApplication = async (formData) => {
