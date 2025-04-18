@@ -39,14 +39,14 @@ app.use("/api/partners", partnerRoutes);
 app.use("/api/shelters", shelterRoutes);
 app.use("/api/donations", donationRoutes);
 
-// Test routes
-app.get("/test", (req, res) => {
-  res.json({ message: "Server is working!" });
-});
+// // Test routes
+// app.get("/test", (req, res) => {
+//   res.json({ message: "Server is working!" });
+// });
 
-app.get("/api/test", (req, res) => {
-  res.json({ message: "API is working!" });
-});
+// app.get("/api/test", (req, res) => {
+//   res.json({ message: "API is working!" });
+// });
 
 // Simple pets route that always returns data
 app.get("/api/pets", (req, res) => {
