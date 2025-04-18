@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 const AuthContext = createContext(null);
-const API_BASE_URL = 'http://localhost:5004/api';
+const API_BASE_URL = 'https://pawpaw-backend.onrender.com/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {

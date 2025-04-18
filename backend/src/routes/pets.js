@@ -95,7 +95,7 @@ router.post("/add", upload.single("image"), async (req, res) => {
     // Check if we have a file upload or an image URL
     if (req.file) {
       // If file uploaded, use the file path with the correct URL path
-      imageUrl = `http://localhost:5004/uploads/${req.file.filename}`;
+      imageUrl = `https://pawpaw-backend.onrender.com/uploads/${req.file.filename}`;
       console.log("Image URL created:", imageUrl);
     } else if (req.body.imageUrl) {
       // If image URL provided, use it directly

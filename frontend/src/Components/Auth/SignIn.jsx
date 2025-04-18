@@ -1,48 +1,35 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Auth.css';
-
-const API_BASE_URL = 'http://localhost:5004/api';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { apiService } from "../../config/api";
+import "./Auth.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const data = await apiService.auth.login(formData);
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to sign in');
-      }
-
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      navigate('/profile');
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/profile");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -79,15 +66,16 @@ const SignIn = () => {
             />
           </div>
           <button type="submit" disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? "Signing in..." : "Sign In"}
           </button>
         </form>
         <p className="auth-switch">
-          Don't have an account? <span onClick={() => navigate('/signup')}>Sign Up</span>
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/signup")}>Sign Up</span>
         </p>
       </div>
     </div>
   );
 };
 
-export default SignIn; 
+export default SignIn;

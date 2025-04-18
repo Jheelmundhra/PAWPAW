@@ -5,7 +5,7 @@ import AddPetForm from './AddPetForm';
 import api from '../../services/api';
 import './Profile.css';
 
-const API_BASE_URL = 'http://localhost:5004/api';
+const API_BASE_URL = 'https://pawpaw-backend.onrender.com/api';
 
 const Profile = () => {
   const navigate = useNavigate();

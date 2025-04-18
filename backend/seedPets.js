@@ -102,7 +102,7 @@ const samplePets = [
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/petadoption")
+  .connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log("Connected to MongoDB");
 
