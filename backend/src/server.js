@@ -10,15 +10,14 @@ const app = express();
 // Enhanced CORS configuration
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
   })
 );
 
-// Handle preflight requests
-app.options("*", cors());
+
 
 // Middleware
 app.use(express.json());
