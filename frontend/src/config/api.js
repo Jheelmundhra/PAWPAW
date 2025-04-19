@@ -79,9 +79,10 @@ export const apiService = {
     create: async (petData, token) => {
       // Handle both FormData and JSON submissions
       if (petData instanceof FormData) {
+        // For Cloudinary image uploads through FormData
         const response = await fetch(`${API_BASE_URL}/pets/add`, {
           method: "POST",
-          headers: getAuthHeaders(token, false),
+          headers: getAuthHeaders(token, false), // No Content-Type for FormData
           body: petData,
         });
         return handleApiResponse(response);
@@ -103,6 +104,65 @@ export const apiService = {
           headers: getAuthHeaders(token),
         }
       );
+      return handleApiResponse(response);
+    },
+  },
+
+  // Shelter endpoints
+  shelters: {
+    getAll: async (params = {}) => {
+      const queryParams = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined) queryParams.append(key, value);
+      });
+
+      const queryString = queryParams.toString()
+        ? `?${queryParams.toString()}`
+        : "";
+      const response = await fetch(`${API_BASE_URL}/shelters${queryString}`);
+      return handleApiResponse(response);
+    },
+
+    getById: async (id) => {
+      const response = await fetch(`${API_BASE_URL}/shelters/${id}`);
+      return handleApiResponse(response);
+    },
+
+    create: async (shelterData, token) => {
+      // Handle both FormData and JSON submissions
+      if (shelterData instanceof FormData) {
+        // For Cloudinary image uploads through FormData
+        const response = await fetch(`${API_BASE_URL}/shelters/add`, {
+          method: "POST",
+          headers: getAuthHeaders(token, false), // No Content-Type for FormData
+          body: shelterData,
+        });
+        return handleApiResponse(response);
+      } else {
+        const response = await fetch(`${API_BASE_URL}/shelters/add-json`, {
+          method: "POST",
+          headers: getAuthHeaders(token),
+          body: JSON.stringify(shelterData),
+        });
+        return handleApiResponse(response);
+      }
+    },
+
+    update: async (id, shelterData, token) => {
+      const response = await fetch(`${API_BASE_URL}/shelters/${id}`, {
+        method: "PUT",
+        headers: getAuthHeaders(token),
+        body: JSON.stringify(shelterData),
+      });
+      return handleApiResponse(response);
+    },
+
+    delete: async (id, userId, token) => {
+      const response = await fetch(`${API_BASE_URL}/shelters/${id}`, {
+        method: "DELETE",
+        headers: getAuthHeaders(token),
+        body: JSON.stringify({ userId }),
+      });
       return handleApiResponse(response);
     },
   },

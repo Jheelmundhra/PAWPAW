@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require("path");
 const login = require("./routes/login");
 require("dotenv").config();
 
@@ -13,18 +12,13 @@ app.use(
     origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
+    credentials: true,
   })
 );
-
-
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve uploaded files
-app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Import routes
 const petRoutes = require("./routes/pets");
