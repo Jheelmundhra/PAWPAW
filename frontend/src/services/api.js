@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = 'https://pawpaw-backend.onrender.com/api';
 
 // Helper function to handle authentication headers
 const getAuthHeaders = (token, includeContentType = true) => {
