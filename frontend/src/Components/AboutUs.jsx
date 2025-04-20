@@ -12,7 +12,7 @@ const AboutUs = () => {
       <div className="about-title-container">
         <h2 className="about-us-title">ABOUT US</h2>
         <img 
-          src="src/assets/aboutdog.png"
+          src="https://res.cloudinary.com/da1dzhidd/image/upload/v1745149919/Jheel/aboutdog_r1tuvb.png"
           alt="Happy dog" 
           className="about-dog-image" 
         />
