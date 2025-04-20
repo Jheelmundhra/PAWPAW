@@ -233,7 +233,7 @@ Always call your vet immediately for senior pet emergencies - they deteriorate f
     <div className="caring-container">
         <div className="title-container">
         <img 
-          src="src/assets/Add a little bit of body text-3.png" 
+          src="https://res.cloudinary.com/da1dzhidd/image/upload/v1745149784/Jheel/Add_a_little_bit_of_body_text-3_gfnyeg.png" 
           alt="Pet care icon" 
           className="title-icon" 
         />
