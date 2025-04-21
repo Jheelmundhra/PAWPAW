@@ -79,7 +79,7 @@ const AdoptionFAQ = () => {
   return (
     <div className="faq-container">
       <div className="faq-header">
-      <img src="src/assets/BigShoeLight.png" alt="Happy dog" className="header-dog-image" />
+      <img src="https://res.cloudinary.com/da1dzhidd/image/upload/v1745259615/BigShoeLight_ov75sg.png" alt="Happy dog" className="header-dog-image" />
       <h1>Adoption FAQs</h1>
       </div>
       
